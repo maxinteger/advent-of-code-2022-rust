@@ -13,15 +13,15 @@ pub fn part_one(input: &str) -> Option<u32> {
 
 pub fn part_two(input: &str) -> Option<u32> {
     let mut calories = input
-    .split("\n\n")
-    .map(|group| {
-        group
-            .split("\n")
-            .filter(|data| !data.is_empty())
-            .map(|cal| cal.parse::<u32>().unwrap())
-            .sum()
-    })
-    .collect::<Vec<_>>();
+        .split("\n\n")
+        .map(|group| {
+            group
+                .split("\n")
+                .filter(|data| !data.is_empty())
+                .map(|cal| cal.parse::<u32>().unwrap())
+                .sum()
+        })
+        .collect::<Vec<_>>();
     calories.sort();
     Some(calories.iter().rev().take(3).sum())
 }
