@@ -15,7 +15,7 @@ pub fn part_one(input: &str) -> Option<u32> {
                 };
                 (result + ro + 1) as u32
             })
-            .sum()
+            .sum(),
     )
 }
 
@@ -31,13 +31,13 @@ pub fn part_two(input: &str) -> Option<u32> {
 
                 let (result, ro) = match outcome {
                     0 => (0, (lo + 2) % 3), // left opponent win
-                    1 => (3, lo), // draw
+                    1 => (3, lo),           // draw
                     2 => (6, (lo + 1) % 3), // right opponent win
                     _ => panic!(),
                 };
                 (result + ro + 1) as u32
             })
-            .sum()
+            .sum(),
     )
 }
 
