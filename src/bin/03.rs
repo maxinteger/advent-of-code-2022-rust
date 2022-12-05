@@ -36,7 +36,7 @@ pub fn part_two(input: &str) -> Option<u32> {
             .split('\n')
             .tuples::<(_, _, _)>()
             .map(|(a, b, c)| {
-                let (a, b,c) = (a.as_bytes(), b.as_bytes(), c.as_bytes());
+                let (a, b, c) = (a.as_bytes(), b.as_bytes(), c.as_bytes());
                 a.into_iter()
                     .unique()
                     .filter(|ac| b.contains(ac) && c.contains(ac))
