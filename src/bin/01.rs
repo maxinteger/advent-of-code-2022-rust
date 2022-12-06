@@ -3,7 +3,7 @@ pub fn part_one(input: &str) -> Option<u32> {
         .split("\n\n")
         .map(|group| {
             group
-                .split("\n")
+                .split('\n')
                 .filter(|data| !data.is_empty())
                 .map(|cal| cal.parse::<u32>().unwrap())
                 .sum()
@@ -16,7 +16,7 @@ pub fn part_two(input: &str) -> Option<u32> {
         .split("\n\n")
         .map(|group| {
             group
-                .split("\n")
+                .split('\n')
                 .filter(|data| !data.is_empty())
                 .map(|cal| cal.parse::<u32>().unwrap())
                 .sum()

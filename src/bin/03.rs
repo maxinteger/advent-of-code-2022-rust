@@ -19,7 +19,7 @@ pub fn part_one(input: &str) -> Option<u32> {
             .map(|line| {
                 let (a, b) = line.split_at(line.len() / 2);
                 let (a, b) = (a.as_bytes(), b.as_bytes());
-                a.into_iter()
+                a.iter()
                     .unique()
                     .filter(|ac| b.contains(ac))
                     .map(|c| to_priority(*c) as u32)
@@ -37,7 +37,7 @@ pub fn part_two(input: &str) -> Option<u32> {
             .tuples::<(_, _, _)>()
             .map(|(a, b, c)| {
                 let (a, b, c) = (a.as_bytes(), b.as_bytes(), c.as_bytes());
-                a.into_iter()
+                a.iter()
                     .unique()
                     .filter(|ac| b.contains(ac) && c.contains(ac))
                     .map(|c| to_priority(*c) as u32)
