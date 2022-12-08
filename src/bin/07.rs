@@ -18,7 +18,7 @@ enum Inputs {
 
 const ALL_SPACE: usize = 70_000_000;
 const UPDATE_SIZE: usize = 30_000_000;
-const SIZE_LIMIT:usize = 100_000;
+const SIZE_LIMIT: usize = 100_000;
 
 pub fn part_one(input: &str) -> Option<u32> {
     let mut stack = vec![0];
@@ -35,7 +35,7 @@ pub fn part_one(input: &str) -> Option<u32> {
                 while let Some(next) = stack.pop() {
                     parent_size += next;
                     if next == 0 {
-                        break
+                        break;
                     }
                 }
                 if parent_size <= SIZE_LIMIT {
@@ -67,7 +67,7 @@ pub fn part_two(input: &str) -> Option<u32> {
                 while let Some(next) = stack.pop() {
                     parent_size += next;
                     if next == 0 {
-                        break
+                        break;
                     }
                 }
                 dir_sizes.push(parent_size);
@@ -76,15 +76,15 @@ pub fn part_two(input: &str) -> Option<u32> {
             _ => (),
         });
 
-        let mut parent_size = 0;
-        while let Some(next) = stack.pop() {
-            parent_size += next;
-            if next == 0 {
-                break
-            }
+    let mut parent_size = 0;
+    while let Some(next) = stack.pop() {
+        parent_size += next;
+        if next == 0 {
+            break;
         }
-        dir_sizes.push(parent_size);
-        stack.push(parent_size);
+    }
+    dir_sizes.push(parent_size);
+    stack.push(parent_size);
     let root_size: usize = stack.iter().sum();
     dir_sizes.push(root_size);
     let available_space = ALL_SPACE - root_size;
