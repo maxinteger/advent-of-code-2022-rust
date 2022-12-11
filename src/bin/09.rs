@@ -43,7 +43,6 @@ impl Coord {
     }
 }
 
-
 #[derive(Display, FromStr, PartialEq, Debug)]
 enum Instructions {
     #[display("L {0}")]
@@ -76,7 +75,7 @@ fn _debug_separator(int: Instructions) {
     };
 }
 
-fn _debug(head: &Coord, tail:&Coord, w: isize, h: isize) {
+fn _debug(head: &Coord, tail: &Coord, w: isize, h: isize) {
     for y in (0..h).rev() {
         for x in 0..w {
             let c = Coord::new(x, y);
@@ -146,17 +145,20 @@ pub fn part_two(input: &str) -> Option<u32> {
                 };
 
                 let mut last_segment = h_pos;
-                tail = tail.iter().map(|t_pos| {
-                    let next_t_pos = if !last_segment.is_near(t_pos) {
-                        t_pos.get_closest(&last_segment)
-                    } else {
-                        *t_pos
-                    };
-                    last_segment = next_t_pos;
-                    next_t_pos
-                }).collect();
+                tail = tail
+                    .iter()
+                    .map(|t_pos| {
+                        let next_t_pos = if !last_segment.is_near(t_pos) {
+                            t_pos.get_closest(&last_segment)
+                        } else {
+                            *t_pos
+                        };
+                        last_segment = next_t_pos;
+                        next_t_pos
+                    })
+                    .collect();
                 // debug(&h_pos, &t_pos, 6, 5);
-                
+
                 last_segment_coord.insert(*tail.last().unwrap());
                 // debug(&h_pos, &t_pos, 6, 5);
             }
