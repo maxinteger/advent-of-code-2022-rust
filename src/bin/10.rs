@@ -60,11 +60,11 @@ pub fn part_two(input: &str) -> Option<u32> {
             |(mut x, mut crt), (cycle, add_x)| {
                 let cycle = cycle as isize;
                 let h_coord = cycle % 40;
-                
+
                 if h_coord == 0 {
                     crt.push("\n".to_string());
                 }
-                let pixel = if (x -1) <= h_coord && (x + 1) >= h_coord {
+                let pixel = if (x - 1) <= h_coord && (x + 1) >= h_coord {
                     "#"
                 } else {
                     "."
@@ -74,8 +74,10 @@ pub fn part_two(input: &str) -> Option<u32> {
                 x += *add_x;
                 (x, crt)
             },
-        ).1.join("");
-        println!("{}", screen);
+        )
+        .1
+        .join("");
+    println!("{}", screen);
     None
 }
 
