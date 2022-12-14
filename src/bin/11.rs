@@ -68,11 +68,10 @@ pub fn part_one(input: &str) -> Option<u32> {
         .split("\n\n")
         .map(|l| Monkey::new(l.trim().parse::<PreMonkey>().unwrap()))
         .collect::<Vec<_>>();
-    
+
     let rounds = 0..20;
     rounds.for_each(|r| {
         for m in 0..monkeys.len() {
-        
             while let Some(worry_level) = monkeys[m].items.pop_front() {
                 let worry_level = match monkeys[m].op {
                     Op::AddOld => worry_level * 2,
@@ -91,11 +90,18 @@ pub fn part_one(input: &str) -> Option<u32> {
                     monkeys[idx].items.push_back(worry_level);
                 }
             }
-        };
+        }
     });
 
-    monkeys.sort_by(|a, b| {a.inspected.partial_cmp(&b.inspected).unwrap()});
-    Some(monkeys.iter().rev().take(2).map(|m|{m.inspected}).product::<usize>() as u32)
+    monkeys.sort_by(|a, b| a.inspected.partial_cmp(&b.inspected).unwrap());
+    Some(
+        monkeys
+            .iter()
+            .rev()
+            .take(2)
+            .map(|m| m.inspected)
+            .product::<usize>() as u32,
+    )
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
@@ -104,11 +110,10 @@ pub fn part_two(input: &str) -> Option<u32> {
         .split("\n\n")
         .map(|l| Monkey::new(l.trim().parse::<PreMonkey>().unwrap()))
         .collect::<Vec<_>>();
-    
+
     let rounds = 0..10_000;
     rounds.for_each(|r| {
         for m in 0..monkeys.len() {
-        
             while let Some(worry_level) = monkeys[m].items.pop_front() {
                 let worry_level = match monkeys[m].op {
                     Op::AddOld => worry_level * 2,
@@ -127,11 +132,18 @@ pub fn part_two(input: &str) -> Option<u32> {
                     monkeys[idx].items.push_back(worry_level);
                 }
             }
-        };
+        }
     });
 
-    monkeys.sort_by(|a, b| {a.inspected.partial_cmp(&b.inspected).unwrap()});
-    Some(monkeys.iter().rev().take(2).map(|m|{m.inspected}).product::<usize>() as u32)
+    monkeys.sort_by(|a, b| a.inspected.partial_cmp(&b.inspected).unwrap());
+    Some(
+        monkeys
+            .iter()
+            .rev()
+            .take(2)
+            .map(|m| m.inspected)
+            .product::<usize>() as u32,
+    )
 }
 
 fn main() {
