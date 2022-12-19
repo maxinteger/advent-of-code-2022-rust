@@ -33,7 +33,11 @@ impl Display for Coord {
     }
 }
 
-fn render_debug_map(total_path: &VecDeque<Coord>, f_score: &HashMap<Coord, usize>, map: &Vec<&[u8]>) {
+fn render_debug_map(
+    total_path: &VecDeque<Coord>,
+    f_score: &HashMap<Coord, usize>,
+    map: &Vec<&[u8]>,
+) {
     let mut debug: Vec<Vec<String>> = vec![];
     for y in 0..map.len() {
         debug.push(vec![]);
@@ -118,8 +122,8 @@ fn a_star(start: &Coord, goal: &Coord, map: &Vec<&[u8]>) -> Option<VecDeque<Coor
                 Coord::new(0, 1),
             ] {
                 let neighbor = current.add(&offset);
-                let tentative_g_score = g_score.get(&current).unwrap_or(&infinity)
-                    + d(&current, &neighbor, map);
+                let tentative_g_score =
+                    g_score.get(&current).unwrap_or(&infinity) + d(&current, &neighbor, map);
 
                 if tentative_g_score < *g_score.get(&neighbor).unwrap_or(&infinity) {
                     come_from.insert(neighbor, current);
@@ -172,8 +176,7 @@ pub fn part_two(input: &str) -> Option<u32> {
             row.iter().enumerate().for_each(|(col_idx, ch)| {
                 if *ch == b'S' || *ch == b'a' {
                     starts.push(Coord::new(col_idx as isize, row_idx as isize));
-                }
-                else if *ch == b'E' {
+                } else if *ch == b'E' {
                     goal = Coord::new(col_idx as isize, row_idx as isize);
                 }
             });
@@ -181,13 +184,16 @@ pub fn part_two(input: &str) -> Option<u32> {
         })
         .collect::<Vec<_>>();
 
-    starts.iter().map(|start| { 
-        if let Some(res) = a_star(start, &goal, &map) {
-            (res.len() - 1) as u32
-        } else {
-            u32::MAX
-        }
-     }).min()
+    starts
+        .iter()
+        .map(|start| {
+            if let Some(res) = a_star(start, &goal, &map) {
+                (res.len() - 1) as u32
+            } else {
+                u32::MAX
+            }
+        })
+        .min()
 }
 
 fn main() {
