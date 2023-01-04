@@ -9,6 +9,7 @@ pub fn part_one(input: &str) -> Option<String> {
     stack_input.lines().rev().skip(1).for_each(|line| {
         let row = line.as_bytes();
         let mut col_index = 1; // first crate letter after '['
+        #[allow(clippy::needless_range_loop)]
         for col_num in 0..num_of_stacks {
             if !row[col_index].is_ascii_whitespace() {
                 stacks[col_num].push(row[col_index])
@@ -51,6 +52,7 @@ pub fn part_two(input: &str) -> Option<String> {
     stack_input.lines().rev().skip(1).for_each(|line| {
         let row = line.as_bytes();
         let mut col_index = 1; // first crate letter after '['
+        #[allow(clippy::needless_range_loop)]
         for col_num in 0..num_of_stacks {
             if !row[col_index].is_ascii_whitespace() {
                 stacks[col_num].push(row[col_index])

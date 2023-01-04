@@ -98,6 +98,7 @@ fn a_star(start: &Coord, goal: &Coord, map: &Vec<&[u8]>) -> Option<VecDeque<Coor
     }
 
     while !open_set.is_empty() {
+        #[allow(clippy::clone_on_copy)]
         let current = open_set
             .iter()
             .min_by_key(|coord| f_score.get(coord).unwrap_or(&infinity))

@@ -52,7 +52,7 @@ pub fn part_one(input: &str) -> Option<u32> {
             }
         }
     }
-    m.file_debug("14-debug.txt", "");
+    m.file_debug("14-debug.txt", "").unwrap();
     Some(count)
 }
 
@@ -86,7 +86,7 @@ pub fn part_two(input: &str) -> Option<u32> {
             }
         }
     }
-    m.file_debug("14-debug.txt", "");
+    m.file_debug("14-debug.txt", "").unwrap();
     Some(count)
 }
 

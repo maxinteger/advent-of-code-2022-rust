@@ -33,7 +33,6 @@ enum Op {
 
 #[derive(Clone, Debug)]
 struct Monkey {
-    monkey_index: usize,
     items: VecDeque<isize>,
     op: Op,
     divider: isize,
@@ -51,7 +50,6 @@ impl Monkey {
             .map(|i| i.trim().parse::<isize>().unwrap())
             .collect::<VecDeque<_>>();
         Monkey {
-            monkey_index: prep.monkey_index,
             items,
             op,
             divider: prep.divider,
@@ -70,7 +68,7 @@ pub fn part_one(input: &str) -> Option<u32> {
         .collect::<Vec<_>>();
 
     let rounds = 0..20;
-    rounds.for_each(|r| {
+    rounds.for_each(|_| {
         for m in 0..monkeys.len() {
             while let Some(worry_level) = monkeys[m].items.pop_front() {
                 let worry_level = match monkeys[m].op {
@@ -112,7 +110,7 @@ pub fn part_two(input: &str) -> Option<u32> {
         .collect::<Vec<_>>();
 
     let rounds = 0..10_000;
-    rounds.for_each(|r| {
+    rounds.for_each(|_| {
         for m in 0..monkeys.len() {
             while let Some(worry_level) = monkeys[m].items.pop_front() {
                 let worry_level = match monkeys[m].op {
